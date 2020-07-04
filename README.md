@@ -7,7 +7,8 @@
   - [Prerequisites](#prerequisites)
   - [Build and Publish Docker Image](#build-and-publish-docker-image)
   - [Test Helm Chart](#test-helm-chart)
-  - [Run Helm Chart](#run-helm-chart)
+  - [Installing Helm Chart](#installing-helm-chart)
+  - [Validate Trivia App](#validate-trivia-app)
 
 ## Prerequisites
 
