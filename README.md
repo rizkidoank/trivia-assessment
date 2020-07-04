@@ -30,6 +30,8 @@ contains `build` and `publish` jobs.
 3. Execute `make build-images username=<docker-username>` to build and test docker images
 4. Execute `make publish-images username=<docker-username>` to push the docker images
 
+NOTE: To bump image version, ensure you update the `VERSION` file.
+
 ## Test Helm Chart
 
 Assuming kubernetes cluster already in place, you can test or install helm chart.
