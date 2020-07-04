@@ -1,0 +1,9 @@
+file:
+  /go/bin/trivia-app:
+    exists: true
+    filetype: file
+http:
+  http://localhost:8081/:
+    status: 200
+    allow-insecure: false
+    timeout: 5000

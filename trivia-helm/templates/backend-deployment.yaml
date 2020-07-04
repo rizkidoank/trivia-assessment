@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "trivia-helm.fullname" . }}-backend
+  labels:
+    app: {{ include "trivia-helm.fullname" . }}-backend
+spec:
+{{- if eq .Values.environment "test" }}
+  replicas: 1
+{{- end }}
+  selector:
+    matchLabels:
+      app: {{ include "trivia-helm.fullname" . }}-backend
+  template:
+    metadata:
+    {{- with .Values.backend.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      labels:
+        app: {{ include "trivia-helm.fullname" . }}-backend
+    spec:
+      {{- with .Values.backend.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "trivia-helm.serviceAccountName" . }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
+          imagePullPolicy: {{ .Values.backend.image.pullPolicy }}
+          ports:
+            - containerPort: 8081
+              protocol: TCP
+              name: http
+          resources:
+            {{- toYaml .Values.backend.resources | nindent 12 }}
+      {{- with .Values.backend.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.backend.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.backend.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

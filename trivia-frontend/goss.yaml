@@ -1,0 +1,11 @@
+file:
+  /app/index.js:
+    exists: true
+    filetype: file
+    
+# this test case not work, since the backend should be exists first
+# http:
+#   http://localhost:3000/:
+#     status: 200
+#     allow-insecure: false
+#     timeout: 1000

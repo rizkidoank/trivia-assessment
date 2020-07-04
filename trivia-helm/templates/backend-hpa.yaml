@@ -1,0 +1,28 @@
+{{- if ne .Values.environment "test" }}
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ include "trivia-helm.fullname" . }}-backend
+  labels:
+    app: {{ include "trivia-helm.fullname" . }}-backend
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ include "trivia-helm.fullname" . }}-backend
+  minReplicas: {{ .Values.backend.autoscaling.minReplicas }}
+  maxReplicas: {{ .Values.backend.autoscaling.maxReplicas }}
+  metrics:
+  {{- if .Values.backend.autoscaling.targetCPUUtilizationPercentage }}
+    - type: Resource
+      resource:
+        name: cpu
+        targetAverageUtilization: {{ .Values.backend.autoscaling.targetCPUUtilizationPercentage }}
+  {{- end }}
+  {{- if .Values.backend.autoscaling.targetMemoryUtilizationPercentage }}
+    - type: Resource
+      resource:
+        name: memory
+        targetAverageUtilization: {{ .Values.backend.autoscaling.targetMemoryUtilizationPercentage }}
+  {{- end }}
+{{- end }}

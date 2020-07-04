@@ -1,0 +1,13 @@
+{
+  "name": "trivia-frontend",
+  "version": "0.1.0",
+  "description": "trivia assessment frontend application",
+  "main": "index.js",
+  "repository": "https://github.com/rizkidoank/trivia-test",
+  "author": "Rizki <rizki.doank94@gmail.com> (https://rizkidoank.com)",
+  "license": "MIT",
+  "dependencies": {
+    "express": "4.17.1",
+    "request": "2.88.2"
+  }
+}
