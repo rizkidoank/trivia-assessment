@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "trivia assessment frontend application",
   "main": "index.js",
-  "repository": "https://github.com/rizkidoank/trivia-test",
+  "repository": "https://github.com/rizkidoank/trivia-assessment",
   "author": "Rizki <rizki.doank94@gmail.com> (https://rizkidoank.com)",
   "license": "MIT",
   "dependencies": {
